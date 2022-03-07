@@ -1,0 +1,1 @@
+"D:\微信web开发者工具\cli.bat" cloud functions deploy --e cloud1-2go1iipzb8154da6 --n quickstartFunctions --r --project "D:\wxapp\toenroll" --report_first --report

@@ -1,0 +1,75 @@
+<!--pages/index/index.wxml-->
+<!-- <text>pages/index/index.wxml</text> -->
+
+<view class="banner">
+    <swiper class="swip_main" indicator-dots autoplay interval="12000" circular>
+        <block wx:for="{{mglist}}">
+            <swiper-item>
+                <image style="width: 100%;height: 100%;" mode="aspectFill" src="{{item.photo}}"></image>
+            </swiper-item>
+        </block>
+    </swiper>
+</view>
+
+
+<view class="news">
+    <view class="news_left">
+        <image src="../../images/notice.jpg"></image>
+        <view class="news_title">
+            【 公告 】
+        </view>
+    </view>
+
+    <view class="news_right">
+        <swiper class="swiper-news-top" vertical="true" autoplay="true" circular="true" interval="5000">
+            <block wx:for="{{msgList}}">
+                <navigator url="" open-type="navigate">
+                    <swiper-item>
+                        <view class="swiper_item">· {{item.text}}</view>
+                    </swiper-item>
+                </navigator>
+            </block>
+        </swiper>
+    </view>
+</view>
+
+<view class="nav">
+    <view class="nav-banner" id='1' bindtap="showlist">
+        <view class="nav-banner-img">
+            <image src="../../images/card.png"></image>
+        </view>
+        <view class="nav-banner-text">面试预约</view>
+    </view>
+    <view class="nav-banner" id='2' bindtap="showlist">
+        <view class="nav-banner-img">
+            <image src="../../images/card.png"></image>
+        </view>
+        <view class="nav-banner-text">面试签到</view>
+    </view>
+    <view class="nav-banner" id='3' bindtap="showlist">
+        <view class="nav-banner-img">
+            <image src="../../images/card.png"></image>
+        </view>
+        <view class="nav-banner-text">我的预约</view>
+    </view>
+</view>
+
+
+<view class="news-bar">
+    <view class="news-bar-title">
+        注意事项
+    </view>
+    <view class="news-bar-box" wx:for="{{attention}}" wx:for-item="item" wx:key="_id" bindtap="sjowbs" id="{{item._id}}" wx:if="{{index<10}}">
+       <view class="news-box-img">
+            <image src="{{item.photo}}"></image>
+       </view>
+       <view class="news-box-text">
+            <view class="news-box-text-title">
+            {{item.title}}
+            </view>
+            <view  class="news-bar-box-time">
+            {{item._updateTime}}
+            </view>
+       </view>
+    </view>
+</view>
