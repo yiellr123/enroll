@@ -1,5 +1,5 @@
 // pages/index/index.js
-
+var times = require('../../utils/times')
 const db = wx.cloud.database()
 Page({
 
@@ -17,30 +17,50 @@ Page({
      */
     onLoad: function (options) {
         db.collection("banner").get({
-            success:res=>{
+            success: res => {
                 console.log(res)
                 this.setData({
-                    mglist:res.data
+                    mglist: res.data
                 })
             }
         })
         db.collection("notice").get({
-            success:res=>{
+            success: res => {
                 console.log(res)
                 this.setData({
-                    msgList:res.data
+                    msgList: res.data
                 })
             }
         })
         db.collection("attention").get({
-            success:res=>{
-                console.log(res)
+            success: res => {
+                // console.log(res.data.length)
+                for (var i = 0; i < res.data.length; i++) {
+                    console.log(res.data[i]["_createTime"])
+                    res.data[i]["_createTime"] = times.toDate(res.data[i]["_createTime"])
+                }
+
                 this.setData({
-                    attention:res.data
+                    attention: res.data
                 })
             }
         })
     },
+
+    sjowbs: function (e) {
+        console.log(e.currentTarget.id)
+        wx.navigateTo({
+            url: '../news/index?text_id=' + e.currentTarget.id,
+        })
+
+    },
+    showlist: function (e) {
+        wx.showTabBar({
+           url: '../enroll/index'
+        })
+    },
+
+
 
     /**
      * 生命周期函数--监听页面初次渲染完成

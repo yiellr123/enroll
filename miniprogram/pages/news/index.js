@@ -1,18 +1,33 @@
-// pages/myself.js
+// pages/news/index.js
+const db=wx.cloud.database()
+var times = require('../../utils/times')
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-
+        text_id:'',
+        html:'',
+        time:'',
+        title:''
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
+        this.setData({
+            text_id:options.text_id
+        })
+        //一个字段值
+        db.collection("attention").doc(this.data.text_id).get().then(res=>{
+            this.setData({
+                html:res.data.text,
+                title:res.data.title,
+                time:times.toDate(res.data["_createTime"])
+            })
+        })
     },
 
     /**

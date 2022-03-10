@@ -68,7 +68,7 @@
             {{item.title}}
             </view>
             <view  class="news-bar-box-time">
-            {{item._updateTime}}
+            {{item._createTime}}
             </view>
        </view>
     </view>

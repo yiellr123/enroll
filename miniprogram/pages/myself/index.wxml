@@ -1,2 +1,39 @@
 <!--pages/myself/index.wxml-->
-<text>pages/myself/index.wxml</text>
+<!-- <text>pages/myself/index.wxml</text> -->
+
+<view class="my_top">
+  <image src="../../images/1035211.jpg"></image>
+</view>
+
+
+<view class="my_logo" wx:if="{{openid!=''}}">
+  <view class="my_logo_pho">
+    <image class="userinfo-avatar" src="{{userInfo[0].userphoto}}" mode="cover"></image>
+  </view>
+  <view class="my_logo_text">
+    <!-- <text class="user-name">{{userInfo[0].name}}</text> -->
+    hello
+  </view>
+</view>
+
+<view class="my_logo" wx:if="{{openid=='' || userInfo==''}}">
+  <view class="top_title">您还未授权登录</view>
+  <button bindtap="getopenid" type="default">登录</button>
+</view>
+
+<view class="nav_my">
+  <view class="nav_bar" bindtap="wdyy">
+    <view class="nav_bar_logo">
+      <image src="../../images/wodemaidan.png"></image>
+    </view>
+    <view class="nar_bar_text">我的预约</view>
+  </view>
+  <view class="nav_bar" bindtap="wdyy">
+    <view class="nav_bar_logo">
+      <image src="../../images/guahao.png"></image>
+    </view>
+    <view class="nar_bar_text">历史预约</view>
+  </view>
+  
+</view>
+

@@ -1,2 +1,171 @@
 <!--pages/enroll/index.wxml-->
-<text>pages/enroll/index.wxml</text>
+<!-- <text>pages/enroll/index.wxml 22 发</text> -->
+
+
+<!-- <van-cell title="选择面试日期" value="{{ date }}" bind:click="onDisplay" />
+<van-calendar show="{{ show }}" bind:close="onClose" bind:confirm="onConfirm" />
+
+
+<van-toast id="van-toast" />
+<van-cell title="选择面试时间" is-link bind:click="showPopup" />
+
+<van-popup show="{{ timeShow }}" position="bottom" custom-style="height: 60%;" bind:close="onTimeClose">
+  <van-picker show-toolbar title="请选择面试时间段" columns="{{ columns }}" bind:cancel="onTimeCancel" bind:confirm="onTimeConfirm" />
+</van-popup>
+
+
+<van-cell-group>
+  <van-field value="{{ name }}" placeholder="请输入用户名" border="{{ false }}" bind:change="onChangeName" />
+</van-cell-group> -->
+
+
+
+<!-- 
+<van-popup show="{{ timeShow }}" position="bottom" custom-style="height: 60%;" bind:close="onTimeClose">
+  <yycalendar show="false" beginTime="08:00" endTime="18:00" timeGap="60" themeColor="red" showOverdue="false" bind:yybindchange="_yybindchange" bind:yybindhide="_yybindhide" />
+</van-popup> -->
+
+<!-- 
+<van-button type="primary">按钮</van-button> -->
+<!-- <van-cell title="选择单个日期" value="{{ date }}" bind:click="onDisplay" />
+<van-calendar show="{{ show }}" bind:close="onClose" bind:confirm="onConfirm" /> -->
+
+
+
+
+
+<!-- <van-popup show="{{ show }}" bind:close="onClose">内容</van-popup>
+<van-cell-group>
+  <van-cell title="单元格" value="内容" />
+  <van-cell title="单元格" value="内容" label="描述信息" border="{{ false }}" />
+</van-cell-group> -->
+
+<!-- <view class="box">
+  <button class="btn" bindtap="popup" data-position="left">{{startTimeText?startTimeText:'请选择面试时间'}}</button>
+
+</view> -->
+
+
+
+
+
+<!-- <view class="weui-cells weui-cells_after-title">
+    <navigator  class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <view class="weui-cell__bd">选择预约时间</view>
+        <view class="weui-cell__ft weui-cell__ft_in-access">{{startTimeText ? startTimeText : '请选择'}}</view>
+    </navigator>
+</view> -->
+
+
+
+<!-- <page-container 
+  show="{{show1}}"
+  round="{{round}}"
+  overlay="{{overlay}}"
+  duration="{{duration}}"
+  position="{{position}}"
+  close-on-slide-down="{{false}}"
+  bindbeforeenter="onBeforeEnter"
+  bindenter="onEnter"
+  bindafterenter="onAfterEnter"
+  bindbeforeleave="onBeforeLeave"
+  bindleave="onLeave"
+  bindafterleave="onAfterLeave"
+  bindclickoverlay="onClickOverlay"
+  custom-style="{{customStyle}}"
+  overlay-style="{{overlayStyle}}"
+>
+  <view class="detail-page">
+    <date-picker 
+    startTime="{{startTime}}" 
+    endTime="{{endTime}}"
+    unit="{{unit}}"
+    reserveUnit="{{reserveUnit}}"
+    unreserveTime="{{unreserveTime}}"
+    activedConst="{{activedConst}}"
+    disabledConst="{{disabledConst}}"
+    themeColor="#E74C75"
+    bind:selectTime="onSelectTime"
+/>
+    <view class="timebutton" >
+      <van-button type="primary" bindtap="exit">退出</van-button>
+    </view>
+
+
+    <!-- <button type="primary" bindtap="exit">推出</button> -->
+<!-- <van-button class="timebutton" type="primary" bindtap="exit">退出</van-button> -->
+
+
+<!-- </view>
+</page-container> -->
+
+
+
+<date-picker startTime="{{startTime}}" endTime="{{endTime}}" unit="{{unit}}" reserveUnit="{{reserveUnit}}" unreserveTime="{{unreserveTime}}" activedConst="{{activedConst}}" disabledConst="{{disabledConst}}" themeColor="#E74C75" bind:selectTime="onSelectTime" />
+<van-cell-group>
+  <van-cell title="面试时间" value="{{startTimeText ? startTimeText : '请在上表选择'}}" />
+</van-cell-group>
+
+
+<view class="coushu">nihao</view>
+
+<van-row>
+  <van-col span="24">
+    <view class="inputText">
+      姓名:
+    </view>
+  </van-col>
+</van-row>
+
+<van-row>
+  <van-col span="24">
+    <van-cell-group>
+      <van-field value="{{ name }}" placeholder="请输入您的姓名" border="{{ false }}" bind:change="onChangeName" />
+    </van-cell-group>
+  </van-col>
+</van-row>
+
+<van-row>
+  <van-col span="24">
+    <view class="inputText">
+      电话:
+    </view>
+  </van-col>
+</van-row>
+<van-row>
+  <van-col span="24">
+    <van-cell-group>
+      <van-field value="{{ phone }}" type="number" placeholder="请输入您的手机号码" border="{{ false }}" bind:change="onChangePhone" />
+    </van-cell-group>
+  </van-col>
+</van-row>
+
+<van-row>
+  <van-col span="24">
+    <view class="inputText">
+      面试岗位:
+    </view>
+  </van-col>
+</van-row>
+<van-row>
+  <van-col span="24">
+    <van-cell-group>
+      <van-field value="{{ job }}" placeholder="请输入您的理想岗位" border="{{ false }}" bind:change="onChangeJob" />
+    </van-cell-group>
+  </van-col>
+</van-row>
+
+<view class="button">
+  <!-- <van-row>
+    <van-col span="6">
+    </van-col>
+    <van-col span="12"> -->
+      <van-button type="default" bindtap="onCommit">提交预约</van-button>
+    <!-- </van-col>
+    <van-col span="6">
+    </van-col>
+
+  </van-row> -->
+</view>
+
+

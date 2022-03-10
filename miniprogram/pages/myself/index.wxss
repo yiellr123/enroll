@@ -1,1 +1,64 @@
 /* pages/myself/index.wxss */
+.my_top{
+    width: 100%;
+    height: 290rpx;
+  }
+  .my_top image{
+    width: 100%;
+    height: 100%;
+  }
+
+  .my_logo{
+    width: 100%;
+    height: 350rpx;
+    margin-top: -290rpx;
+  }
+  .my_logo_pho{
+    width: 125rpx;
+    height: 125rpx;
+    background-color: black;
+    /* auto居中 border变成圆 */
+    margin: 22rpx auto;   
+    border-radius: 50%;
+    /* 隐藏掉方框边缘 */
+    overflow: hidden;
+  }
+  .my_logo_text{
+    text-align: center;
+    font-weight: 600;
+    color: white;
+  }
+  .nav_my{
+    width: 90%;
+    height: 165rpx;
+    background-color: rgb(245, 244, 245);
+    margin: 0 auto;
+    border-radius: 10rpx;
+    margin-top: -100rpx;
+    /* 添加阴影 */
+    box-shadow: 0 0 20px rgb(0 0 0 / 20%);
+  }
+
+  .nav_bar{
+    width: 50%;
+    height: 100%;
+    float: left;
+    /* background-color: red; */
+  }
+
+  .nav_bar_logo{
+    width: 100rpx;
+    height: 90rpx;
+    margin: 20rpx auto;
+    margin-bottom: 10rpx;
+    /* background-color: yellow; */
+  }
+  .nav_bar_logo image{
+    width: 100%;
+    height: 100%;
+  }
+  .nar_bar_text{
+    text-align: center;
+    font-weight: 700;
+    font-size: 27rpx;
+  }

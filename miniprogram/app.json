@@ -1,9 +1,10 @@
 {
     "pages": [
-        "pages/index/index",
-        "pages/myself",
         "pages/myself/index",
-        "pages/enroll/index"
+        "pages/index/index",
+        "pages/enroll/index",
+
+        "pages/news/index"
     ],
     "window": {
         "backgroundColor": "#F6F6F6",
@@ -12,36 +13,40 @@
         "navigationBarTitleText": "面试预约小程序",
         "navigationBarTextStyle": "white"
     },
-
     "tabBar": {
         "color": "#a9b7b7",
         "selectedColor": "#11cd6e",
-        "borderStyle":"black",
-        "list":[
+        "borderStyle": "black",
+        "list": [
             {
                 "pagePath": "pages/index/index",
                 "iconPath": "images/card.png",
                 "selectedIconPath": "images/card-selected.png",
-                "text":"首页"
+                "text": "首页"
             },
             {
                 "pagePath": "pages/enroll/index",
                 "iconPath": "images/tabBar_c.png",
                 "selectedIconPath": "images/tabBar_cc.png",
-                "text":"面试预约"
+                "text": "面试预约"
             },
             {
                 "pagePath": "pages/myself/index",
                 "iconPath": "images/tabBar_d.png",
                 "selectedIconPath": "images/tabBar_dd.png",
-                "text":"我的预约"
+                "text": "我的预约"
             }
         ]
     },
-
-
-
-
-    "sitemapLocation": "sitemap.json",
-    "style": "v2"
+    "plugins": {
+        "myPlugin": {
+            "version": "1.0.0",
+            "provider": "wx84472d5652384779"
+        }
+    },
+    "usingComponents": {
+        "van-calendar": "@vant/weapp/calendar/index",
+        "van-button": "@vant/weapp/button/index"
+    },
+    "sitemapLocation": "sitemap.json"
 }
