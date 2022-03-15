@@ -103,11 +103,11 @@
 
 <date-picker startTime="{{startTime}}" endTime="{{endTime}}" unit="{{unit}}" reserveUnit="{{reserveUnit}}" unreserveTime="{{unreserveTime}}" activedConst="{{activedConst}}" disabledConst="{{disabledConst}}" themeColor="#E74C75" bind:selectTime="onSelectTime" />
 <van-cell-group>
-  <van-cell title="面试时间" value="{{startTimeText ? startTimeText : '请在上表选择'}}" />
+  <van-cell center title="面试时间" value="{{startTimeCommit ? timeArea : '请在上表选择'}}" />
 </van-cell-group>
 
 
-<view class="coushu">nihao</view>
+<view class="coushu"></view>
 
 <van-row>
   <van-col span="24">
@@ -117,13 +117,49 @@
   </van-col>
 </van-row>
 
+<!-- <van-row>
+  <van-col span="24"> -->
+<van-cell-group>
+  <van-field value="{{ name }}" input-align="right" size="large" placeholder="请输入您的姓名" border="{{ false }}" bind:change="onChangeName" />
+</van-cell-group>
+<!-- </van-col>
+</van-row> -->
+
 <van-row>
   <van-col span="24">
-    <van-cell-group>
-      <van-field value="{{ name }}" placeholder="请输入您的姓名" border="{{ false }}" bind:change="onChangeName" />
-    </van-cell-group>
+    <view class="inputText">
+      年龄:
+    </view>
   </van-col>
 </van-row>
+
+<van-cell-group>
+  <van-field value="{{ age }}" input-align="right"  size="large" placeholder="请输入您的年龄" border="{{ false }}" bind:change="onChangeName" />
+</van-cell-group>
+
+<!-- <van-row>
+  <van-col span="24">
+    <view class="inputText">
+      性别:
+    </view>
+  </van-col>
+</van-row>
+
+<van-row>
+  <van-col span="24">
+<view class="radio">
+  <van-radio-group value="{{ radio }}" bind:change="onChangeRadio" direction="horizontal">
+  <van-radio name="1">单选框 1</van-radio>
+  <van-radio name="2">单选框 2</van-radio>
+  </van-radio-group>
+</view>>
+</van-col>
+</van-row> -->
+
+
+
+
+
 
 <van-row>
   <van-col span="24">
@@ -135,7 +171,7 @@
 <van-row>
   <van-col span="24">
     <van-cell-group>
-      <van-field value="{{ phone }}" type="number" placeholder="请输入您的手机号码" border="{{ false }}" bind:change="onChangePhone" />
+      <van-field value="{{ phone }}" input-align="right" size="large" placeholder="请输入您的手机号码" border="{{ false }}" bind:change="onChangePhone" />
     </van-cell-group>
   </van-col>
 </van-row>
@@ -150,7 +186,7 @@
 <van-row>
   <van-col span="24">
     <van-cell-group>
-      <van-field value="{{ job }}" placeholder="请输入您的理想岗位" border="{{ false }}" bind:change="onChangeJob" />
+      <van-field value="{{ job }}" input-align="right" size="large" placeholder="请输入您的理想岗位" border="{{ false }}" bind:change="onChangeJob" />
     </van-cell-group>
   </van-col>
 </van-row>
@@ -160,12 +196,10 @@
     <van-col span="6">
     </van-col>
     <van-col span="12"> -->
-      <van-button type="default" bindtap="onCommit">提交预约</van-button>
-    <!-- </van-col>
+  <van-button type="default" bindtap="onCommit">提交预约</van-button>
+  <!-- </van-col>
     <van-col span="6">
     </van-col>
 
   </van-row> -->
 </view>
-
-

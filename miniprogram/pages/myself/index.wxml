@@ -8,11 +8,12 @@
 
 <view class="my_logo" wx:if="{{openid!=''}}">
   <view class="my_logo_pho">
-    <image class="userinfo-avatar" src="{{userInfo[0].userphoto}}" mode="cover"></image>
+    <!-- <image class="userinfo-avatar" src="{{userInfo[0].userphoto}}" mode="cover"></image> -->
+    <image calss="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
   </view>
   <view class="my_logo_text">
     <!-- <text class="user-name">{{userInfo[0].name}}</text> -->
-    hello
+    <text class="user-name">{{userInfo.nickName}}</text>
   </view>
 </view>
 

@@ -16,8 +16,9 @@
   .my_logo_pho{
     width: 125rpx;
     height: 125rpx;
-    background-color: black;
+    /* background-color: black; */
     /* auto居中 border变成圆 */
+    /* padding: 2rem; */
     margin: 22rpx auto;   
     border-radius: 50%;
     /* 隐藏掉方框边缘 */
@@ -28,6 +29,17 @@
     font-weight: 600;
     color: white;
   }
+
+  .top_title{
+    font-weight: 600;
+    line-height: 90rpx;
+    color: white;
+    text-align: center;
+    font-size: 30rpx;
+    margin-top: 20rpx;
+    margin-bottom: 10rpx;
+  }
+
   .nav_my{
     width: 90%;
     height: 165rpx;
