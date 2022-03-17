@@ -30,8 +30,13 @@
         },
         "useIsolateContext": true,
         "userConfirmedBundleSwitch": false,
-        "packNpmManually": false,
-        "packNpmRelationList": [],
+        "packNpmManually": true,
+        "packNpmRelationList": [
+            {
+                "packageJsonPath": "./package.json",
+                "miniprogramNpmDistDir": "./miniprogram/"
+            }
+        ],
         "minifyWXSS": true,
         "disableUseStrict": false,
         "minifyWXML": true,
@@ -41,7 +46,7 @@
     },
     "appid": "wxc32e793675cbc704",
     "projectname": "toenroll",
-    "libVersion": "2.22.1",
+    "libVersion": "2.21.4",
     "cloudfunctionTemplateRoot": "cloudfunctionTemplate",
     "condition": {
         "search": {

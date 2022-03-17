@@ -17,6 +17,6 @@ exports.main = async (event, context) => {
     //     unionid: wxContext.UNIONID,
     // }
     return await db.collection("enrolltime").where({
-        enable: false
+        enable:false
     }).get()
 }

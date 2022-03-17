@@ -17,7 +17,7 @@ Page({
         date: '',
         show: false,
         name: '',
-        age:'',
+        age: '',
         phone: '',
         job: '',
         //性别单选框
@@ -26,7 +26,7 @@ Page({
         startTime: '08:00',
         endTime: '18:00',
         unit: 30, //时间显示间隔
-        reserveUnit: 60, //预约时间长度
+        reserveUnit: 30, //预约时间长度
         activedConst: 101, //选中的时间段
         disabledConst: 102, //不可选时间段状态码
         unreserveTime: [], //不可选时间
@@ -75,10 +75,10 @@ Page({
         })
         // console.log(this.name)
     },
-    onChangeAge(e){
+    onChangeAge(e) {
         console.log(e.detail)
         this.setData({
-            age:e.detail
+            age: e.detail
         })
     },
     onChangePhone(e) {
@@ -137,101 +137,158 @@ Page({
                 })
             }
             //TODO:
-            //在此处判断改该时间段是否插入过
-            db.collection('enrolltime').where({
-                enrollBegin: this.data.startTimeCommit,
-                enrollEnd: this.data.endTimeCommit
-            }).get(
-                // {success: res=>{console.log(res)} }
-            ).then(res => {
-                console.log(res)
-                if (res.data.length == 0) {
-                    db.collection('enrolltime').add({
-                        data: {
-                            // openid: this.data.openid,
-                            enrollBegin: this.data.startTimeCommit,
-                            enrollEnd: this.data.endTimeCommit,
-                            number: this.data.number,
-                            enable: true
-                        },
-                        // success: function (res) {
-                        //     // res 是一个对象，其中有 _id 字段标记刚创建的记录的 id
-                        //     // console.log("插入后data.openid"+openid)
-                        //     console.log(res)
-                        // }
-                    }).then(res => {
-                        console.log(res)
-                        console.log("插入后data.openid" + this.data.openid)
-                        db.collection('myenroll').add({
-                            data: {
-                                openid: this.data.openid,
-                                time: this.data.startTimeCommit,
-                                phone: this.data.phone,
-                                status: true,
-                                job: this.data.job
-                            },
-                        }).then(res => {
-                            console.log(res)
-                            console.log("插入myenroll")
-                        })
+            //判断自己是否有进行中的预约
+            db.collection('myenroll').where({
+                openid: this.data.openid,
+                status: true
+            }).get().then(res => {
+                if (res.data.length > 0) {
+                    wx.showModal({
+                        title: '提示',
+                        content: '您当前已有进行中的预约,请取消后重新预约',
+                        showCancel: false,
+                        success(res) {
+                            if (res.confirm) {
+                                console.log('用户点击确定')
+                            } else if (res.cancel) {
+                                console.log('用户点击取消')
+                            }
+                        }
                     })
-                } else if (res.data.length != 0) {
-                    if (res.data[0].enable) {
-                        if (res.data[0].number - 1 > 0) {
-                            db.collection('enrolltime').doc(res.data[0]._id).update({
+                } else {
+                    db.collection('enrolltime').where({
+                        enrollBegin: this.data.startTimeCommit,
+                        enrollEnd: this.data.endTimeCommit
+                    }).get(
+                        // {success: res=>{console.log(res)} }
+                    ).then(res => {
+                        console.log(res)
+                        if (res.data.length == 0) {
+                            db.collection('enrolltime').add({
                                 data: {
-                                    number: res.data[0].number - 1,
+                                    // openid: this.data.openid,
+                                    enrollBegin: this.data.startTimeCommit,
+                                    enrollEnd: this.data.endTimeCommit,
+                                    number: this.data.number - 1,
+                                    enable: true
                                 },
-                                // success:function(res){
-                                //     console.log(number)
+                                // success: function (res) {
+                                //     // res 是一个对象，其中有 _id 字段标记刚创建的记录的 id
+                                //     // console.log("插入后data.openid"+openid)
+                                //     console.log(res)
                                 // }
                             }).then(res => {
-                                console.log("更新成功,时间段还可预约 ")
+                                console.log(res)
+                                console.log("插入后data.openid" + this.data.openid)
+                                db.collection('myenroll').add({
+                                    data: {
+                                        openid: this.data.openid,
+                                        name: this.data.name,
+                                        myBeginTime: this.data.startTimeCommit,
+                                        myEndTime: this.data.endTimeCommit,
+                                        phone: this.data.phone,
+                                        status: true,
+                                        job: this.data.job
+                                    },
+                                }).then(res => {
+                                    console.log(res)
+                                    console.log("插入myenroll")
+                                })
                             })
-                        } else {
-                            db.collection('enrolltime').doc(res.data[0]._id).update({
-                                data: {
-                                    number: res.data[0].number - 1,
-                                    enable: false
+                            wx.showModal({
+                                title: '提示',
+                                content: '您已成功预约',
+                                showCancel: false,
+                                success(res) {
+                                    if (res.confirm) {
+                                        console.log('用户点击确定')
+                                    } else if (res.cancel) {
+                                        console.log('用户点击取消')
+                                    }
                                 }
-                            }).then(res => {
-                                console.log("更新成功,时间段已约满")
                             })
-                        }
-
-                    } else {
-                        wx.showModal({
-                            title: '提示',
-                            content: '时间段已预约完',
-                            success(res) {
-                                if (res.confirm) {
-                                    console.log('用户点击确定')
-                                } else if (res.cancel) {
-                                    console.log('用户点击取消')
+                        } else if (res.data.length != 0) {
+                            if (res.data[0].enable) {
+                                if (res.data[0].number - 1 > 0) {
+                                    db.collection('enrolltime').doc(res.data[0]._id).update({
+                                        data: {
+                                            number: res.data[0].number - 1,
+                                        },
+                                        // success:function(res){
+                                        //     console.log(number)
+                                        // }
+                                    }).then(res => {
+                                        console.log("更新成功,时间段还可预约 ")
+                                        db.collection('myenroll').add({
+                                            data: {
+                                                openid: this.data.openid,
+                                                name: this.data.name,
+                                                myBeginTime: this.data.startTimeCommit,
+                                                myEndTime: this.data.endTimeCommit,
+                                                phone: this.data.phone,
+                                                status: true,
+                                                job: this.data.job
+                                            },
+                                        }).then(res => {
+                                            console.log(res)
+                                            console.log("插入myenroll")
+                                        })
+                                    })
+                                } else {
+                                    db.collection('enrolltime').doc(res.data[0]._id).update({
+                                        data: {
+                                            number: res.data[0].number - 1,
+                                            enable: false
+                                        }
+                                    }).then(res => {
+                                        console.log("更新成功,时间段已约满")
+                                        db.collection('myenroll').add({
+                                            data: {
+                                                openid: this.data.openid,
+                                                name: this.data.name,
+                                                myBeginTime: this.data.startTimeCommit,
+                                                myEndTime: this.data.endTimeCommit,
+                                                phone: this.data.phone,
+                                                status: true,
+                                                job: this.data.job
+                                            },
+                                        }).then(res => {
+                                            console.log(res)
+                                            console.log("插入myenroll")
+                                        })
+                                    })
                                 }
+                                wx.showModal({
+                                    title: '提示',
+                                    content: '您已成功预约',
+                                    showCancel: false,
+                                    success(res) {
+                                        if (res.confirm) {
+                                            console.log('用户点击确定')
+                                        } else if (res.cancel) {
+                                            console.log('用户点击取消')
+                                        }
+                                    }
+                                })
+                            } else {
+                                wx.showModal({
+                                    title: '提示',
+                                    content: '时间段已预约完',
+                                    success(res) {
+                                        if (res.confirm) {
+                                            console.log('用户点击确定')
+                                        } else if (res.cancel) {
+                                            console.log('用户点击取消')
+                                        }
+                                    }
+                                })
                             }
-                        })
-                    }
+                        }
+                    })
                 }
             })
+            //在此处判断改该时间段是否插入过
 
-            // db.collection('myenroll').add({
-            //     data:{
-            //         openid:this.data.openid,
-            //         time:this.data.startTimeCommit,
-            //         phone:this.data.phone,
-            //         status:true,
-            //         job:this.data.job
-            //     },
-            //     success: function (res) {
-            //         // res 是一个对象，其中有 _id 字段标记刚创建的记录的 id
-            //         // console.log("插入后data.openid"+openid)
-            //         console.log(res)
-
-            //     }
-
-            // })
-            // console.log("插入后data.openid"+this.data.openid)
         } else {
             wx.showModal({
                 title: '提示',
@@ -251,13 +308,8 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        // {
-        //     var tag = "2022.2.28 17:02:13"
-        //     var a = tag.split(" ");
-        //     console.log(a)
-        //     console.log(a[1])
-        // }
-        var temp =[]
+
+        var temp = []
         wx.cloud.callFunction({
             name: 'open',
             success: (res) => {
@@ -270,31 +322,6 @@ Page({
             }
 
         })
-        db.collection('enrolltime').where({
-            enable:false
-        }).get().then(res=>{
-            for (var i=0;i<res.data.length;i++){
-               this.data.unableTime.push({
-                    startTime: res.data[i].enrollBegin,
-                    endTime:  res.data[i].enrollEnd,
-                    status: 102
-                })
-            }
-        })
-        console.log("unable")
-        console.log(this.data.unableTime)
-        // wx.cloud.callFunction({
-        //     name:"getUnableTime",
-        //     complete: res=>{
-        //         console.log(res.result.data)
-        //         this.setData({
-        //             unableTime:res.result.data
-        //         })
-        //     }
-
-        // })
-
-
 
         // 动态设置非服务事件
         // setTimeout(() => {
@@ -313,10 +340,9 @@ Page({
                     endTimeTp = res.data[i]["restEnd"].split(" ");
                     num = res.data[i].number;
                     gap = res.data[i].divide;
-                    console.log("fjoasidjfoihaoifhoisdhgoihasodvnknvkjdihvfoiwnhdg")
+
                     console.log(beginTimeTp[1])
                     console.log(beginTimeTp)
-                    // beginTp=beginTimeTp[1]
                     console.log(res.data[i]["divide"])
                     console.log("number:" + num)
                 }
@@ -328,38 +354,46 @@ Page({
                     unit: gap,
                     number: num
                 })
+                //添加已经预约完的时间段
+                wx.cloud.callFunction({
+                    name: "getUnableTime",
+                    complete: res => {
+                        console.log(res.result.data)
 
-                // var start=dates.getDateByAdd(1)+" "+beginTimeTp[1]+":00"
-                // console.log(beginTimeTp[1])
-                // console.log("start:"+start)
+                        console.log("云函数getUnableTime")
+                        console.log(res)
+                        for (var i = 1; i < 10; i++) {
+                            // console.log(i)
+                            // this.data.unreserveTime.push({
+                            temp.push({
+                                // startTime: dates.getDateByAdd(i)+" "+beginTp+":00",
+                                startTime: dates.getDateByAdd(i) + " " + this.data.beginTp + ":00",
+                                endTime: dates.getDateByAdd(i) + " " + this.data.endTp + ":00",
+                                status: 102, // 不能选中
+                            }, )
+                        }
+                        // this.data.unreserveTime.push({
+                        temp.push({
+                            startTime: dates.getDateByAdd(10) + " " + "00:00:00",
+                            endTime: dates.getDateByAdd(58) + " " + "23:00:00",
+                            status: 102
+                        })
+                        for (var i = 0; i < res.result.data.length; i++) {
+                            // this.data.unreserveTime.push({
+                            temp.push({
+                                startTime: res.result.data[i].enrollBegin,
+                                endTime: res.result.data[i].enrollEnd,
+                                status: 102
+                            })
+                        }
+                        this.setData({
+                            unreserveTime: temp
+                        })
+                    }
+                })
+
             }
         })
-        // .then(res=>{
-        //     console.log("ceshi")
-        // })
-        // var now = new Date();
-        // var exitTime = now.getTime() + 10000;
-        // while (true) {
-        //   now = new Date();
-        //   if (now.getTime() > exitTime)
-        //     break;
-        // }
-
-        // var start=dates.getDateByAdd(1)+" "+beginTp+":00"
-        // console.log(beginTp)
-        // console.log("start:"+start)
-        // for (var i=1;i<4;i++){
-        //     console.log(i)
-
-        //     temp.push({
-        //         // startTime: dates.getDateByAdd(i)+" "+beginTp+":00",
-        //         startTime: start,
-        //         endTime: dates.getDateByAdd(i)+" "+"13:00"+":00",
-        //         status: 102, // 不能选中
-        //     },)
-
-        // }
-        // console.log(temp)
         // this.setData({
         //     //     unreserveTime: [{
         //     //         startTime: '2022-03-18 14:00:00',
@@ -378,47 +412,46 @@ Page({
         this.setData({
             envId: options.envId
         });
-        // var dateList= dates.getDateByAdd(1)
+
         console.log("this is data today ")
-        // console.log(dates.getCurrentMonthFirst())
+
         console.log("this is data add ")
-        // console.log(dateList)
-        //   console.log(envid+"这是envid")
+
     },
 
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady: function () {
-        var temp = []
+        // var temp = []
         var start = dates.getDateByAdd(1) + " " + this.data.beginTp + ":00"
         var end = dates.getDateByAdd(1) + " " + this.data.endTp + ":00"
         console.log(this.data.beginTp)
         console.log("start:" + start)
         console.log("end:" + end)
 
-        for (var i = 1; i < 10; i++) {
-            // console.log(i)
-            temp.push({
-                // startTime: dates.getDateByAdd(i)+" "+beginTp+":00",
-                startTime: dates.getDateByAdd(i) + " " + this.data.beginTp + ":00",
-                endTime: dates.getDateByAdd(i) + " " + this.data.endTp + ":00",
-                status: 102, // 不能选中
-            }, )
-            // this.setData({
-            //     unreserveTime:unreserveTime.push(temp)
-            // })
-        }
-        temp.push({
-            startTime: dates.getDateByAdd(10)+ " "+ "00:00:00",
-            endTime: dates.getDateByAdd(58)+ " "+ "23:00:00",
-            status:102
-        })
-        console.log(temp)
-        this.setData({
+        // for (var i = 1; i < 10; i++) {
+        //     // console.log(i)
+        //     this.data.unreserveTime.push({
+        //         // temp.push({
+        //         // startTime: dates.getDateByAdd(i)+" "+beginTp+":00",
+        //         startTime: dates.getDateByAdd(i) + " " + this.data.beginTp + ":00",
+        //         endTime: dates.getDateByAdd(i) + " " + this.data.endTp + ":00",
+        //         status: 102, // 不能选中
+        //     }, )
+        //     // this.setData({
+        //     //     unreserveTime:unreserveTime.push(temp)
+        //     // })
+        // }
+        // this.data.unreserveTime.push({
+        //     // temp.push({
+        //     startTime: dates.getDateByAdd(10) + " " + "00:00:00",
+        //     endTime: dates.getDateByAdd(58) + " " + "23:00:00",
+        //     status: 102
+        // })
+        console.log("unrserveTime")
+        console.log(this.data.unreserveTime)
 
-            unreserveTime: temp
-        });
     },
 
     /**

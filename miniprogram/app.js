@@ -16,6 +16,9 @@ App({
     }
 
     this.globalData = {};
+  },
+  globalData:{
+    openid:''
   }
 });
 //  enroll-5gedsofoa021f2fb  云环境id

@@ -134,7 +134,7 @@
 </van-row>
 
 <van-cell-group>
-  <van-field value="{{ age }}" input-align="right"  size="large" placeholder="请输入您的年龄" border="{{ false }}" bind:change="onChangeName" />
+  <van-field value="{{ age }}" input-align="right"  size="large" placeholder="请输入您的年龄" border="{{ false }}" bind:change="onChangeAge" />
 </van-cell-group>
 
 <!-- <van-row>
@@ -203,3 +203,5 @@
 
   </van-row> -->
 </view>
+
+<view class="coushu"></view>

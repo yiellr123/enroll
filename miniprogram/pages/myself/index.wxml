@@ -9,7 +9,7 @@
 <view class="my_logo" wx:if="{{openid!=''}}">
   <view class="my_logo_pho">
     <!-- <image class="userinfo-avatar" src="{{userInfo[0].userphoto}}" mode="cover"></image> -->
-    <image calss="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
   </view>
   <view class="my_logo_text">
     <!-- <text class="user-name">{{userInfo[0].name}}</text> -->
@@ -23,18 +23,77 @@
 </view>
 
 <view class="nav_my">
-  <view class="nav_bar" bindtap="wdyy">
+  <view class="nav_bar" bindtap="onMyEnroll">
     <view class="nav_bar_logo">
       <image src="../../images/wodemaidan.png"></image>
     </view>
     <view class="nar_bar_text">我的预约</view>
   </view>
-  <view class="nav_bar" bindtap="wdyy">
+  <view class="nav_bar" bindtap="onHistory">
     <view class="nav_bar_logo">
       <image src="../../images/guahao.png"></image>
     </view>
     <view class="nar_bar_text">历史预约</view>
   </view>
-  
+
 </view>
 
+<view class="showTable" wx:if="{{!showHis}}">
+  <!-- <view class="tableView" wx:for="{{messageList}}" wx:for-item="item" wx:if="{{item.status}}"> -->
+  <!-- <view wx:if="{{showMy_item}}">
+    您当前没有预约
+  </view> -->
+  <block wx:if="{{showMy_item}}">
+    <view class="tableView">
+      <view class="source">
+        <view class="source-title">姓名</view>
+        <view class="source-content">{{myEnrollData.name}}</view>
+      </view>
+      <view class="source">
+        <view class="source-title">面试开始时间</view>
+        <view class="source-content">{{myEnrollData.myBeginTime}}</view>
+      </view>
+      <view class="source">
+        <view class="source-title">面试结束时间</view>
+        <view class="source-content">{{myEnrollData.myEndTime}}</view>
+      </view>
+      <view class="source">
+        <view class="source-title">预留电话</view>
+        <view class="source-content">{{myEnrollData.phone}}</view>
+      </view>
+      <view class="source">
+        <view class="source-title">面试地点</view>
+        <view class="source-content">{{place}}</view>
+      </view>
+    </view>
+    <view class="cancelButton">
+      <van-button type="warning" size="normal" plain="true" bindtap="onCancel">取消预约</van-button>
+    </view>
+  </block>
+</view>
+
+<view class="showHistory" wx:if="{{showHis}}" bindtap="onHistory">
+  <view class="tableViewHis" wx:for="{{hisEnrollData}}" wx:for-item="item" >
+    <!-- <view class="source">
+      <view class="source-title">姓名</view>
+      <view class="source-content">{{item.name}}</view>
+    </view> -->
+    <view class="sourceHis">
+      <view class="source-title-his">面试开始时间</view>
+      <!-- <view class="source-content">{{item.myBeginTime}}</view> -->
+      <view class="source-content-his">{{item.myBeginTime}}</view>
+    </view>
+    <view class="sourceHis">
+      <view class="source-title-his">面试结束时间</view>
+      <view class="source-content-his">{{item.myEndTime}}</view>
+    </view>
+    <view class="sourceHis">
+      <view class="source-title-his">电话号码</view>
+      <view class="source-content-his">{{item.phone}}</view>
+    </view>
+    <view class="sourceHis">
+      <view class="source-title-his">面试地点</view>
+      <view class="source-content-his">{{place}}</view>
+    </view>
+  </view>
+</view>

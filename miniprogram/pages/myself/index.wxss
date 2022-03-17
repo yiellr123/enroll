@@ -1,76 +1,183 @@
 /* pages/myself/index.wxss */
-.my_top{
-    width: 100%;
-    height: 290rpx;
-  }
-  .my_top image{
-    width: 100%;
-    height: 100%;
-  }
+.my_top {
+  width: 100%;
+  height: 290rpx;
+}
 
-  .my_logo{
-    width: 100%;
-    height: 350rpx;
-    margin-top: -290rpx;
-  }
-  .my_logo_pho{
-    width: 125rpx;
-    height: 125rpx;
-    /* background-color: black; */
-    /* auto居中 border变成圆 */
-    /* padding: 2rem; */
-    margin: 22rpx auto;   
-    border-radius: 50%;
-    /* 隐藏掉方框边缘 */
-    overflow: hidden;
-  }
-  .my_logo_text{
-    text-align: center;
-    font-weight: 600;
-    color: white;
-  }
+.my_top image {
+  width: 100%;
+  height: 100%;
+}
 
-  .top_title{
-    font-weight: 600;
-    line-height: 90rpx;
-    color: white;
-    text-align: center;
-    font-size: 30rpx;
-    margin-top: 20rpx;
-    margin-bottom: 10rpx;
-  }
+.my_logo {
+  width: 100%;
+  height: 350rpx;
+  margin-top: -290rpx;
+}
 
-  .nav_my{
-    width: 90%;
-    height: 165rpx;
-    background-color: rgb(245, 244, 245);
-    margin: 0 auto;
-    border-radius: 10rpx;
-    margin-top: -100rpx;
-    /* 添加阴影 */
-    box-shadow: 0 0 20px rgb(0 0 0 / 20%);
-  }
+.my_logo_pho {
+  width: 125rpx;
+  height: 125rpx;
+  /* background-color: black; */
+  /* auto居中 border变成圆 */
+  /* padding: 2rem; */
+  margin: 22rpx auto;
+  border-radius: 50%;
+  /* 隐藏掉方框边缘 */
+  overflow: hidden;
+}
 
-  .nav_bar{
-    width: 50%;
-    height: 100%;
-    float: left;
-    /* background-color: red; */
-  }
+.my_logo_text {
+  text-align: center;
+  font-weight: 600;
+  color: white;
+}
 
-  .nav_bar_logo{
-    width: 100rpx;
-    height: 90rpx;
-    margin: 20rpx auto;
-    margin-bottom: 10rpx;
-    /* background-color: yellow; */
-  }
-  .nav_bar_logo image{
-    width: 100%;
-    height: 100%;
-  }
-  .nar_bar_text{
-    text-align: center;
-    font-weight: 700;
-    font-size: 27rpx;
-  }
+.top_title {
+  font-weight: 600;
+  line-height: 90rpx;
+  color: white;
+  text-align: center;
+  font-size: 30rpx;
+  margin-top: 20rpx;
+  margin-bottom: 10rpx;
+}
+
+.nav_my {
+  width: 90%;
+  height: 165rpx;
+  background-color: rgb(245, 244, 245);
+  margin: 0 auto;
+  border-radius: 10rpx;
+  margin-top: -100rpx;
+  /* 添加阴影 */
+  box-shadow: 0 0 20px rgb(0 0 0 / 20%);
+}
+
+.nav_bar {
+  width: 50%;
+  height: 100%;
+  float: left;
+  /* background-color: red; */
+}
+
+.nav_bar_logo {
+  width: 100rpx;
+  height: 90rpx;
+  margin: 20rpx auto;
+  margin-bottom: 10rpx;
+  /* background-color: yellow; */
+}
+
+.nav_bar_logo image {
+  width: 100%;
+  height: 100%;
+}
+
+.nar_bar_text {
+  text-align: center;
+  font-weight: 700;
+  font-size: 27rpx;
+}
+
+.showTable {
+  /* margin-top: 5%; */
+  width: 90%;
+  height: 650rpx;
+  /* background-color: rgb(97, 90, 97); */
+  margin: 0 auto;
+  border-radius: 5rpx;
+  box-shadow: 0 0 20px rgb(0 0 0 / 20%);
+}
+
+.showHistory {
+  width: 90%;
+  height: 100%;
+  /* background-color: rgb(119, 54, 119); */
+  margin: 0 auto;
+  border-radius: 5rpx;
+  box-shadow: 0 0 20px rgb(0 0 0 / 20%);
+}
+
+.tableView {
+  height: 85%;
+  width: 95%;
+  /* background-color: red; */
+  margin: 0 auto;
+  
+
+}
+.tableViewHis{
+  width: 95%;
+  margin: 0 auto;
+  height: 300rpx;
+  /* background-color: red; */
+}
+
+.source {
+  width: 95%;
+  height: 17%;
+  /* background-color: aqua; */
+  margin: 0 auto;
+  border: 1px solid rgb(124, 125, 128);
+  border-radius: 5rpx;
+}
+.sourceHis {
+  width: 95%;
+  height: 17%;
+  /* background-color: aqua; */
+  margin: 0 auto;
+  border: 1px solid rgb(178, 179, 182);
+  border-radius: 5rpx;
+}
+
+.source-title {
+  float: left;
+  width: 38%;
+  height: 100%;
+  /* background-color: yellow; */
+  line-height: 100rpx;
+  text-align: center;
+  font-weight: 700;
+  font-size: 35rpx;
+  color: rgb(35, 36, 39);
+  /* background-color: yellow; */
+}
+.source-title-his{
+  float: left;
+  width: 38%;
+  height: 100%;
+  /* background-color: yellow; */
+  line-height: 40rpx;
+  text-align: center;
+  font-weight: 550;
+  font-size: 28rpx;
+  color: rgb(35, 36, 39);
+}
+
+.source-content {
+  width: 60%;
+  height: 100%;
+  line-height: 100rpx;
+  /* background-color: green; */
+  text-align: center;
+  padding-left: 3rpx;
+  float:left
+}
+.source-content-his{
+  width: 60%;
+  height: 100%;
+  line-height: 50rpx;
+  /* background-color: green; */
+  text-align: center;
+  font-size: 27rpx;
+  padding-left: 3rpx;
+  float:left
+}
+
+
+.cancelButton {
+  margin: 0 auto;
+  text-align: center;
+  height: 15%;
+}
